@@ -1,0 +1,27 @@
+# permissions for end users to edit loki-ssds.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: ssd-loki-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: loki-ssd-editor-role
+rules:
+- apiGroups:
+  - ssd-loki.ssd-loki.com
+  resources:
+  - loki-ssds
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ssd-loki.ssd-loki.com
+  resources:
+  - loki-ssds/status
+  verbs:
+  - get

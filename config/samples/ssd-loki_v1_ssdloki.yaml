@@ -1,0 +1,9 @@
+apiVersion: ssd-loki.ssd-loki.com/v1
+kind: SsdLoki
+metadata:
+  labels:
+    app.kubernetes.io/name: ssd-loki-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: ssdloki-sample
+spec:
+  # TODO(user): Add fields here

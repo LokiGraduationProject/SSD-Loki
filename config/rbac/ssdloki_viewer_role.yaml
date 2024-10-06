@@ -1,0 +1,23 @@
+# permissions for end users to view ssdlokis.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: ssd-loki-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: ssdloki-viewer-role
+rules:
+- apiGroups:
+  - ssd-loki.ssd-loki.com
+  resources:
+  - ssdlokis
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ssd-loki.ssd-loki.com
+  resources:
+  - ssdlokis/status
+  verbs:
+  - get

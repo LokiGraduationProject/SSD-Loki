@@ -1,0 +1,27 @@
+# permissions for end users to edit ssdlokis.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: ssd-loki-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: ssdloki-editor-role
+rules:
+- apiGroups:
+  - ssd-loki.ssd-loki.com
+  resources:
+  - ssdlokis
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ssd-loki.ssd-loki.com
+  resources:
+  - ssdlokis/status
+  verbs:
+  - get

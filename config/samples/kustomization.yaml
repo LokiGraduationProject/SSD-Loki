@@ -1,0 +1,5 @@
+## Append samples of your project ##
+resources:
+- ssd-loki_v1_loki-ssd.yaml
+- ssd-loki_v1_ssdloki.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
