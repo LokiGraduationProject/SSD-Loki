@@ -1,8 +1,12 @@
 package manifests
 
-import corev1 "k8s.io/api/core/v1"
+import (
+	"fmt"
 
-func commonWriteLabels(instanceName string, component string) map[string]string {
+	corev1 "k8s.io/api/core/v1"
+)
+
+func commonLabels(instanceName string, component string) map[string]string {
 	return map[string]string{
 		"app.kubernetes.io/name":      "loki",
 		"app.kubernetes.io/instance":  instanceName,
@@ -21,6 +25,10 @@ func headlessServiceLabels() map[string]string {
 		"variant":                       "headless",
 		"prometheus.io/service-monitor": "false",
 	}
+}
+
+func fqdn(serviceName, namespace string) string {
+	return fmt.Sprintf("%s.%s.svc.cluster.local", serviceName, namespace)
 }
 
 const (

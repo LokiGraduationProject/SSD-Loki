@@ -25,7 +25,7 @@ func BuildBackend(opts Options) ([]client.Object, error) {
 }
 
 func NewBackendStatefulSet(opts Options) *appsv1.StatefulSet {
-	backendLabels := commonWriteLabels("backend", opts.Name)
+	backendLabels := commonLabels("backend", opts.Name)
 
 	// 컨테이너 정의
 	container := corev1.Container{
@@ -199,7 +199,7 @@ func NewBackendStatefulSet(opts Options) *appsv1.StatefulSet {
 
 func NewLokiBackendService(opts Options) *corev1.Service {
 	serviceName := "loki-backend"
-	backendLabels := commonWriteLabels(opts.Name, "backend")
+	backendLabels := commonLabels(opts.Name, "backend")
 
 	// Return the new service object
 	return &corev1.Service{
@@ -236,7 +236,7 @@ func NewLokiBackendService(opts Options) *corev1.Service {
 // NewLokiBackendHeadlessService returns a new headless service for the Loki backend.
 func NewLokiBackendHeadlessService(opts Options) *corev1.Service {
 	serviceName := "loki-backend-headless"
-	backendLabels := commonWriteLabels(opts.Name, "backend")
+	backendLabels := commonLabels(opts.Name, "backend")
 	headlessServiceLabels := map[string]string{
 		"variant":                       "headless",
 		"prometheus.io/service-monitor": "false",
@@ -277,7 +277,7 @@ func NewLokiBackendHeadlessService(opts Options) *corev1.Service {
 // NewQuerierPodDisruptionBudget returns a PodDisruptionBudget for the LokiStack querier pods.
 func NewBackendPodDisruptionBudget(opts Options) *policyv1.PodDisruptionBudget {
 	name := "loki-backend"
-	labels := commonWriteLabels(opts.Name, "backend")
+	labels := commonLabels(opts.Name, "backend")
 
 	return &policyv1.PodDisruptionBudget{
 		TypeMeta: metav1.TypeMeta{

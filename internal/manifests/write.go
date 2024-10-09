@@ -25,7 +25,7 @@ func BuildWrite(opts Options) ([]client.Object, error) {
 }
 
 func NewWriteStatefulSet(opts Options) *appsv1.StatefulSet {
-	writeLabels := commonWriteLabels("write", opts.Name)
+	writeLabels := commonLabels("write", opts.Name)
 
 	// 컨테이너 정의
 	container := corev1.Container{
@@ -203,7 +203,7 @@ func NewWriteStatefulSet(opts Options) *appsv1.StatefulSet {
 
 func NewLokiWriteService(opts Options) *corev1.Service {
 	serviceName := "loki-write"
-	writeLabels := commonWriteLabels(opts.Name, "write")
+	writeLabels := commonLabels(opts.Name, "write")
 
 	// Return the new service object
 	return &corev1.Service{
@@ -240,7 +240,7 @@ func NewLokiWriteService(opts Options) *corev1.Service {
 // NewLokiWriteService creates a k8s service for the Loki write component
 func NewLokiWriteHeadlessService(opts Options) *corev1.Service {
 	serviceName := "loki-write"
-	writeLabels := commonWriteLabels(opts.Name, "write")
+	writeLabels := commonLabels(opts.Name, "write")
 	// Return the new service object
 	return &corev1.Service{
 		TypeMeta: metav1.TypeMeta{
@@ -277,7 +277,7 @@ func NewLokiWriteHeadlessService(opts Options) *corev1.Service {
 // NewQuerierPodDisruptionBudget returns a PodDisruptionBudget for the LokiStack querier pods.
 func NewWritePodDisruptionBudget(opts Options) *policyv1.PodDisruptionBudget {
 	name := "loki-write"
-	labels := commonWriteLabels(opts.Name, "write")
+	labels := commonLabels(opts.Name, "write")
 
 	return &policyv1.PodDisruptionBudget{
 		TypeMeta: metav1.TypeMeta{

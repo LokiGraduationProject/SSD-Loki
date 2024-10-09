@@ -5,11 +5,10 @@ import (
 	"time"
 
 	configv1 "github.com/grafana/loki/operator/apis/config/v1"
-	lokiv1 "github.com/grafana/loki/operator/apis/loki/v1"
-	"github.com/grafana/loki/operator/internal/manifests/internal"
 	"github.com/grafana/loki/operator/internal/manifests/internal/config"
 	"github.com/grafana/loki/operator/internal/manifests/openshift"
 	"github.com/grafana/loki/operator/internal/manifests/storage"
+	"github.com/ssd-loki/loki-operator/internal"
 )
 
 // Options is a set of configuration values to use when building manifests such as resource sizes, etc.
@@ -24,8 +23,6 @@ type Options struct {
 	Stack                lokiv1.LokiStackSpec
 	ResourceRequirements internal.ComponentResources
 
-	AlertingRules       []lokiv1.AlertingRule
-	RecordingRules      []lokiv1.RecordingRule
 	RulesConfigMapNames []string
 	Ruler               Ruler
 
@@ -95,12 +92,6 @@ type TenantOPASpec struct{}
 // TenantOpenShiftSpec config for OpenShift authentication options (e.g. used in openshift-logging mode)
 type TenantOpenShiftSpec struct {
 	CookieSecret string
-}
-
-// Ruler configuration for manifests generation.
-type Ruler struct {
-	Spec   *lokiv1.RulerConfigSpec
-	Secret *RulerSecret
 }
 
 // RulerSecret defines the ruler secret for remote write client auth
