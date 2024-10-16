@@ -5,7 +5,6 @@ import (
 	"time"
 
 	ssdlokiv1 "github.com/ssd-loki/loki-operator/api/v1"
-	"github.com/ssd-loki/loki-operator/internal"
 	"github.com/ssd-loki/loki-operator/internal/manifests/internal/config"
 )
 
@@ -19,14 +18,11 @@ type Options struct {
 
 	Gates                configv1.FeatureGates
 	ssdloki              ssdlokiv1.SsdLoki
-	ResourceRequirements internal.ComponentResources
+	ResourceRequirements ComponentResources
 
 	RulesConfigMapNames []string
-	Ruler               Ruler
 
 	ObjectStorage storage.Options
-
-	OpenShiftOptions openshift.Options
 
 	Timeouts TimeoutConfig
 

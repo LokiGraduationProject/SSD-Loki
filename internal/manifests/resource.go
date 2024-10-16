@@ -7,16 +7,9 @@ import (
 
 // ComponentResources is a map of component->requests/limits
 type ComponentResources struct {
-	IndexGateway ResourceRequirements
-	Ingester     ResourceRequirements
-	Compactor    ResourceRequirements
-	Ruler        ResourceRequirements
-	WALStorage   ResourceRequirements
-	// these two don't need a PVCSize
-	Querier       corev1.ResourceRequirements
-	Distributor   corev1.ResourceRequirements
-	QueryFrontend corev1.ResourceRequirements
-	Gateway       corev1.ResourceRequirements
+	Backend ResourceRequirements
+	Read    ResourceRequirements
+	Write   ResourceRequirements
 }
 
 // ResourceRequirements sets CPU, Memory, and PVC requirements for a component
