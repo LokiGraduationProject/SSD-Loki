@@ -4,11 +4,9 @@ import (
 	"strings"
 	"time"
 
-	configv1 "github.com/grafana/loki/operator/apis/config/v1"
-	"github.com/grafana/loki/operator/internal/manifests/internal/config"
-	"github.com/grafana/loki/operator/internal/manifests/openshift"
-	"github.com/grafana/loki/operator/internal/manifests/storage"
+	ssdlokiv1 "github.com/ssd-loki/loki-operator/api/v1"
 	"github.com/ssd-loki/loki-operator/internal"
+	"github.com/ssd-loki/loki-operator/internal/manifests/internal/config"
 )
 
 // Options is a set of configuration values to use when building manifests such as resource sizes, etc.
@@ -20,7 +18,7 @@ type Options struct {
 	GatewayImage string
 
 	Gates                configv1.FeatureGates
-	Stack                lokiv1.LokiStackSpec
+	ssdloki              ssdlokiv1.SsdLoki
 	ResourceRequirements internal.ComponentResources
 
 	RulesConfigMapNames []string
